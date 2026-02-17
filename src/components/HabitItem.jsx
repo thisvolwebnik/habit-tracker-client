@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { getCurrentStreak } from '../utils/streak';
 
-function HabitItem({ habit, isCompleted, onToggle, onDelete, onEdit }) {
+function HabitItem({ habit, isCompleted, onToggle, onDelete, onEdit, records }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(habit.name);
   const [editedDescription, setEditedDescription] = useState(habit.description || '');
+
+  const today = new Date().toISOString().split('T')[0];
+  const streak = getCurrentStreak(habit.id, records, today);
 
   const handleSave = () => {
     if (!editedName.trim()) return;
@@ -59,6 +63,11 @@ function HabitItem({ habit, isCompleted, onToggle, onDelete, onEdit }) {
     <div className="flex items-center justify-between border rounded-lg p-4 shadow-sm bg-white">
       <div>
         <h3 className="font-semibold text-lg">{habit.name}</h3>
+        {streak > 0 && (
+          <span className="inline-flex items-center gap-1 text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded">
+            🔥 {streak} {streak === 1 ? 'день' : streak < 5 ? 'дня' : 'дней'}
+          </span>
+        )}
         {habit.description && <p className="text-gray-600">{habit.description}</p>}
       </div>
       <div className="flex gap-2">
