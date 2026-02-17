@@ -37,6 +37,19 @@ function App() {
     }
   };
 
+  const deleteHabit = async (id) => {
+    if (!window.confirm('Вы уверены, что хотите удалить привычку ?')) return;
+
+    try {
+      await axios.delete(`/api/habits/${id}`);
+      setHabits(habits.filter((h) => h.id !== id));
+      setRecords(records.filter((r) => r.habitId !== id));
+    } catch (err) {
+      console.error('Ошибка удаления привычки:', err);
+      alert('не удалось удалить привычку');
+    }
+  };
+
   const toggleCompletion = async (habitId, today) => {
     const existing = records.find((r) => r.habitId === habitId && r.date === today);
     try {
@@ -64,7 +77,13 @@ function App() {
     <div className="max-w-2xl mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6 text-center">Трекер привычек</h1>
       <HabitForm onAdd={addHabit} />
-      <HabitList habits={habits} records={records} today={today} onToggle={toggleCompletion} />
+      <HabitList
+        habits={habits}
+        records={records}
+        today={today}
+        onToggle={toggleCompletion}
+        onDeleteHabit={deleteHabit}
+      />
     </div>
   );
 }

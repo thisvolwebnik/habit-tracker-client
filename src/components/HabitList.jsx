@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import HabitItem from './HabitItem';
 
-function HabitList({ habits, records, today, onToggle }) {
+function HabitList({ habits, records, today, onToggle, onDeleteHabit }) {
   if (habits.length === 0) {
     return <p className="text-gray-500 text-center">Пока нет привычек. Добавьте первую!</p>;
   }
@@ -14,6 +14,7 @@ function HabitList({ habits, records, today, onToggle }) {
           habit={habit}
           isCompleted={records.some((r) => r.habitId === habit.id && r.date === today)}
           onToggle={() => onToggle(habit.id, today)}
+          onDelete={onDeleteHabit}
         />
       ))}
     </div>
@@ -30,6 +31,7 @@ HabitList.propTypes = {
   ).isRequired,
   today: PropTypes.string.isRequired,
   onToggle: PropTypes.func.isRequired,
+  onDeleteHabit: PropTypes.func.isRequired,
 };
 
 export default HabitList;
