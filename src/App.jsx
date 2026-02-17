@@ -50,6 +50,16 @@ function App() {
     }
   };
 
+  const editHabit = async (id, updatedData) => {
+    try {
+      const res = await axios.put(`/api/habits/${id}`, updatedData);
+      setHabits(habits.map((h) => (h.id === id ? res.data : h)));
+    } catch (err) {
+      console.error('Ошибка редактирования:', err);
+      alert('Не удалось обновить привычку');
+    }
+  };
+
   const toggleCompletion = async (habitId, today) => {
     const existing = records.find((r) => r.habitId === habitId && r.date === today);
     try {
@@ -83,6 +93,7 @@ function App() {
         today={today}
         onToggle={toggleCompletion}
         onDeleteHabit={deleteHabit}
+        onEdit={editHabit}
       />
     </div>
   );
