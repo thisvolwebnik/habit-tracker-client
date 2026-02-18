@@ -3,11 +3,11 @@ import HabitItem from './HabitItem';
 
 function HabitList({ habits, records, today, onToggle, onDeleteHabit, onEdit }) {
   if (habits.length === 0) {
-    return <p className="text-gray-500 text-center">Пока нет привычек. Добавьте первую!</p>;
+    return <p className='text-gray-500 text-center'>Пока нет привычек. Добавьте первую!</p>;
   }
 
   return (
-    <div className="space-y-3">
+    <div className='space-y-3'>
       {habits.map((habit) => (
         <HabitItem
           key={habit.id}

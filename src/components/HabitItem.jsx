@@ -24,32 +24,32 @@ function HabitItem({ habit, isCompleted, onToggle, onDelete, onEdit, records }) 
 
   if (isEditing) {
     return (
-      <div className="border rounded-lg p-4 shadow-sm bg-white">
+      <div className='border rounded-lg p-4 shadow-sm bg-white'>
         <input
-          className="w-full border rounded px-3 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          type="text"
+          className='w-full border rounded px-3 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400'
+          type='text'
           value={editedName}
           onChange={(e) => setEditedName(e.target.value)}
-          placeholder="Название привычки"
+          placeholder='Название привычки'
         />
         <input
-          className="w-full border rounded px-3 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          type="text"
+          className='w-full border rounded px-3 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400'
+          type='text'
           value={editedDescription}
           onChange={(e) => setEditedDescription(e.target.value)}
-          placeholder="Описание привычки"
+          placeholder='Описание привычки'
         />
-        <div className="flex gap-2">
+        <div className='flex gap-2'>
           <button
-            className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition"
-            type="submit"
+            className='px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition'
+            type='submit'
             onClick={handleSave}
           >
             Сохранить
           </button>
           <button
-            className="px-4 py-2 rounded bg-gray-500 text-white hover:bg-gray-600 transition"
-            type="submit"
+            className='px-4 py-2 rounded bg-gray-500 text-white hover:bg-gray-600 transition'
+            type='submit'
             onClick={handleCancel}
           >
             Отмена
@@ -60,17 +60,17 @@ function HabitItem({ habit, isCompleted, onToggle, onDelete, onEdit, records }) 
   }
 
   return (
-    <div className="flex items-center justify-between border rounded-lg p-4 shadow-sm bg-white">
+    <div className='flex items-center justify-between border rounded-lg p-4 shadow-sm bg-white'>
       <div>
-        <h3 className="font-semibold text-lg">{habit.name}</h3>
+        <h3 className='font-semibold text-lg'>{habit.name}</h3>
         {streak > 0 && (
-          <span className="inline-flex items-center gap-1 text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded">
+          <span className='inline-flex items-center gap-1 text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded'>
             🔥 {streak} {streak === 1 ? 'день' : streak < 5 ? 'дня' : 'дней'}
           </span>
         )}
-        {habit.description && <p className="text-gray-600">{habit.description}</p>}
+        {habit.description && <p className='text-gray-600'>{habit.description}</p>}
       </div>
-      <div className="flex gap-2">
+      <div className='flex gap-2'>
         <button
           onClick={onToggle}
           className={`px-4 py-2 rounded text-white transition ${
@@ -80,14 +80,14 @@ function HabitItem({ habit, isCompleted, onToggle, onDelete, onEdit, records }) 
           {isCompleted ? '✓ Выполнено' : '○ Выполнить'}
         </button>
         <button
-          className="px-4 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition"
+          className='px-4 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600 transition'
           onClick={() => setIsEditing(true)}
         >
           Редактировать
         </button>
         <button
-          className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition"
-          type="submit"
+          className='px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition'
+          type='submit'
           onClick={() => onDelete(habit.id)}
         >
           Удалить
