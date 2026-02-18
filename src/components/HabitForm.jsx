@@ -5,7 +5,7 @@ function HabitForm({ onAdd }) {
   const [description, setDescription] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault;
+    e.preventDefault();
     if (!name.trim()) return;
     onAdd(name, description);
     setName('');
